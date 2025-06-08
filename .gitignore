@@ -1,0 +1,58 @@
+# .gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git
+.mypy_cache
+.pytest_cache
+.hypothesis
+
+# Environment variables and secrets
+.env
+.env.*
+secrets.toml
+.streamlit/secrets.toml
+
+# Azure
+.azure/
+*.zip
+
+# Documentation with sensitive data
+CONNECTION_STRING_ANALYSIS.md
+ERROR_FIX_SUMMARY.md
+FINAL_STATUS.md
+PROJECT_SUMMARY.md
+
+# Docker files (not needed for direct deployment)
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Unnecessary files for Azure App Service
+gunicorn.service
+startup.txt
+scripts.txt
+
+# IDE and OS files
+.vscode/
+.DS_Store
+*.swp
+*.swo
+*~
