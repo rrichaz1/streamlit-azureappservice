@@ -2,6 +2,8 @@
 
 A modern Streamlit application that loads and visualizes CSV data from Azure Blob Storage, with interactive analytics and deployment automation.
 
+App cretaed with Github COPILOT - AGENT mode with Claude 4
+
 ## 🚀 Features
 
 - 📊 Interactive data dashboard with multiple visualization tabs
