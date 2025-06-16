@@ -17,7 +17,8 @@ rm -f app.zip
 
 # Check syntax before deployment
 echo "🔍 Checking syntax..."
-python -m py_compile app.py blob_storage.py config.py
+python -m py_compile Home.py utils/config.py utils/blob_storage.py utils/mock_data.py
+find pages -name "*.py" -exec python -m py_compile {} \;
 if [ $? -ne 0 ]; then
     echo "❌ Syntax errors found! Please fix before deploying."
     exit 1
@@ -27,9 +28,9 @@ echo "✅ Syntax check passed!"
 # Create deployment package with all necessary files
 echo "📦 Creating deployment package..."
 zip -r app.zip \
-    app.py \
-    blob_storage.py \
-    config.py \
+    Home.py \
+    pages/ \
+    utils/ \
     startup.sh \
     requirements.txt \
     Procfile \

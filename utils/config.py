@@ -18,7 +18,13 @@ class AppConfig:
     BLOB_NAME = "sample_data.csv"
     
     # App Settings
-    APP_TITLE = "Employee Data Dashboard"
+    APP_TITLE = "Document Management Portal"
+    APP_DESCRIPTION = "Multi-application document management system with AI-powered analysis"
+    
+    # Multi-page App Settings
+    PORTAL_TITLE = "Document Management Portal"
+    APP1_TITLE = "Assessment/Plan Extractor"
+    APP2_TITLE = "Document Summarizer"
     APP_DESCRIPTION = "This Streamlit app loads and displays data from Azure Blob Storage."
     
     # Chart Settings
