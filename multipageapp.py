@@ -205,29 +205,41 @@ def summary_detail():
     from pages.summarization.note_detail import render_summary_detail_page
     render_summary_detail_page()
 
+from utils.user import select_clinician
+
+# Show the dropdown in sidebar
+with st.sidebar:
+    clinician_name = select_clinician()
+
 # Define pages using st.Page
 home = st.Page(home_page, title="Home", icon="🏠")
 
-# Assessment Extraction pages
+# Always show Overview
 assessment_pages = [
     st.Page(assessment_overview, title="Overview", icon="📊"),
-    st.Page(assessment_metrics_saas, title="Saas Metrics List", icon="📁"),
-    st.Page(assessment_metrics_opas, title="OPAS File List", icon="📈"),
-    st.Page(assessment_feedback, title="Note", icon="💬"),  # Add it back
 ]
 
-# Summarization pages
+# ⬅️ Conditionally add the rest only if a user is selected
+if clinician_name:
+    assessment_pages += [
+        st.Page(assessment_metrics_saas, title="Saas Metrics List", icon="📁"),
+        st.Page(assessment_metrics_opas, title="OPAS File List", icon="📈"),
+        st.Page(assessment_feedback, title="Note", icon="💬"),
+    ]
+
+# Summarization pages stay as-is
 summarization_pages = [
     st.Page(summary_overview, title="Dashboard", icon="📋"),
     st.Page(summary_list, title="Summarized Notes", icon="📝"),
     st.Page(summary_detail, title="Note Detail", icon="🔍"),
 ]
 
-# Create navigation structure 
+# Create navigation structure
 pg = st.navigation({
     "Clinical AI Tools": [home],
-    "Assessment Extraction": assessment_pages
+    "Assessment Extraction": assessment_pages,
+    "Summarization": summarization_pages
 })
 
-# Run the selected page
+# Run selected page
 pg.run()
