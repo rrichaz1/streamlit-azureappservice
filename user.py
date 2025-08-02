@@ -28,3 +28,15 @@ def select_clinician():
             st.session_state.pop(key, None)
 
     return selection
+
+
+
+
+# utils/user.py
+def get_clinician_name():
+    query_params = st.experimental_get_query_params()
+    if "clinician_name" in query_params and not st.session_state.get("clinician_name"):
+        st.session_state.clinician_name = query_params["clinician_name"][0]
+
+    return st.session_state.get("clinician_name")
+
