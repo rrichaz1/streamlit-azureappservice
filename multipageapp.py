@@ -207,9 +207,38 @@ def summary_detail():
 
 from utils.user import select_clinician
 
+
+//or create a utilitity and use
+
+# utils/state.py
+/*
+import streamlit as st
+
+def sync_param_to_state(param_name: str, rerun: bool = False):
+    """
+    Copies a query param into session state if not already set.
+    Optionally reruns the app after syncing.
+    """
+    query_params = st.experimental_get_query_params()
+    if param_name not in st.session_state and param_name in query_params:
+        st.session_state[param_name] = query_params[param_name][0]
+        if rerun:
+            st.rerun()
+
+from utils.state import sync_param_to_state
+
+sync_param_to_state("clinician_name", rerun=True)  */
+
+query_params = st.experimental_get_query_params()
+if "clinician_name" not in st.session_state and "clinician_name" in query_params:
+    st.session_state.clinician_name = query_params["clinician_name"][0]
+    st.rerun()
+
 # Show the dropdown in sidebar
 with st.sidebar:
     clinician_name = select_clinician()
+
+
 
 # Define pages using st.Page
 home = st.Page(home_page, title="Home", icon="🏠")
